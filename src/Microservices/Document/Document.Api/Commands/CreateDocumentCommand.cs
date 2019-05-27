@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Document.Domain;
@@ -15,6 +16,12 @@ namespace Document.Api
             this.Document = document;
         }
 
+    }
+
+    public class QueryCommand : IRequest<IEnumerable<CustomerDocument>>
+    {
+        
+        
     }
 
     

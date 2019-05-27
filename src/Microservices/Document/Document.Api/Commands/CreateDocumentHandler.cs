@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Document.Domain;
@@ -6,7 +8,8 @@ using MediatR;
 
 namespace Document.Api
 {
-     public class CreateDocumentHandler : IRequestHandler<CreateDocumentCommand, bool>
+
+    public class CreateDocumentHandler : IRequestHandler<CreateDocumentCommand, bool>
     {
         private readonly ICustomerDocumentRepository repository;
 
@@ -36,6 +39,16 @@ namespace Document.Api
 
 
             // return Task.FromResult(true);
+        }
+    }
+
+     public class QueryDocumentHandler : IRequestHandler<QueryCommand, IEnumerable<CustomerDocument>>
+    {
+        private readonly ICustomerDocumentRepository repository;
+
+        public async Task<IEnumerable<CustomerDocument>> Handle(QueryCommand commmand, CancellationToken cancellationToken)
+        {
+            return repository.All<CustomerDocument>().ToList();
         }
     }
 }
