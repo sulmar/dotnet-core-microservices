@@ -63,7 +63,7 @@ namespace Document.Inftrastructure
         }
     }
 
-    public class DocumentRepository : BaseRepository<DocumentDbContext, CustomerDocument>
+    public class DocumentRepository : BaseRepository<DocumentDbContext, CustomerDocument>, ICustomerDocumentRepository
     {
         public DocumentRepository(DocumentDbContext context) : base(context)
         {

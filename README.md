@@ -15,3 +15,11 @@ dotnet add Microservices/Document/Document.Domain/Document.Domain.csproj referen
 ~~~ bash
 dotnet sln add src/Core/Infrastructure/Infrastructure.csproj 
 ~~~
+
+## MediatR
+
+- Instalacja
+~~~ bash
+dotnet add package mediatr
+dotnet add package mediatr.extensions.microsoft.dependencyinjection
+~~~

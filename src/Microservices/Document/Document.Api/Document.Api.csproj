@@ -6,8 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="mediatr" Version="7.0.0" />
+    <PackageReference Include="mediatr.extensions.microsoft.dependencyinjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Document.Domain\Document.Domain.csproj" />
+    <ProjectReference Include="..\Document.Inftrastructure\Document.Inftrastructure.csproj" />
   </ItemGroup>
 
 </Project>
