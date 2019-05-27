@@ -45,6 +45,22 @@ namespace Document.Inftrastructure
         public void Remove(int id) => context.Set<T>().Remove(Get(id));
 
         public void Update(T entity) => context.Set<T>().Update(entity);
+
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                    context.Dispose();
+            }
+            disposed=true;
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 
     public class DocumentRepository : BaseRepository<DocumentDbContext, CustomerDocument>
