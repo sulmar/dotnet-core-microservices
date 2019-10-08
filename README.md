@@ -1,20 +1,5 @@
-# dotnet-core-microservices
+# Przykład mikrousługi w .NET Core
 
-
-- Dodanie referencji do projektu
-~~~ bash
-dotnet add app/app.csproj reference lib/lib.csproj
-~~~
-
-Przykład
-~~~ bash
-dotnet add Microservices/Document/Document.Domain/Document.Domain.csproj reference  Core/Infrastructure/Infrastructure.csproj
-~~~
-
-- Dodanie projektu do rozwiązania
-~~~ bash
-dotnet sln add src/Core/Infrastructure/Infrastructure.csproj 
-~~~
 
 ## MediatR
 
