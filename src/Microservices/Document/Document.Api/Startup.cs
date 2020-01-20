@@ -15,7 +15,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
 
 namespace Document.Api
 {
@@ -35,33 +34,43 @@ namespace Document.Api
 
             // dotnet add package Microsoft.EntityFrameworkCore.InMemory
             services.AddDbContext<DocumentDbContext>(options => options.UseInMemoryDatabase()
-                .ConfigureWarnings(c=>c.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
+                .ConfigureWarnings(c => c.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
 
             // dotnet add package Swashbuckle.AspNetCore 
 
-            services.AddSwaggerGen(options =>
+            //services.AddSwaggerGen(options =>
+            //{
+            //    options.SwaggerDoc("v1", new OpenApiInfo {
+            //        Title = "Learning ASP.Net Core 3.0 Rest-API",
+            //        Version = "v1",
+            //        Description = "Demonstrating auto-generated API documentation",
+            //        Contact = new OpenApiContact
+            //        {
+            //            Name = "Kenneth Fukizi",
+            //            Email = "example@example.com",
+            //        },
+            //        License = new OpenApiLicense
+            //        {
+            //            Name = "MIT",
+            //        }
+            //    });
+            //});
+
+            // dotnet add package NSwag.AspNetCore
+            services.AddOpenApiDocument(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo {
-                    Title = "Learning ASP.Net Core 3.0 Rest-API",
-                    Version = "v1",
-                    Description = "Demonstrating auto-generated API documentation",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Kenneth Fukizi",
-                        Email = "example@example.com",
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "MIT",
-                    }
-                });
+                options.Title = "Documents API";
+                options.DocumentName = "Learning ASP.Net Core 3.0 Rest-API";
+                options.Version = "v1";
+                options.Description = "Demonstrating auto-generated API documentation";
             });
+        
 
 
 
 
-                // dotnet add package mediatr
-                // dotnet add package mediatr.extensions.microsoft.dependencyinjection
+            // dotnet add package mediatr
+            // dotnet add package mediatr.extensions.microsoft.dependencyinjection
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -79,12 +88,14 @@ namespace Document.Api
                 app.UseHsts();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                "LEARNING ASP.CORE 3.0 V1");
-            });
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json",
+            //    "LEARNING ASP.CORE 3.0 V1");
+            //});
 
             // open url in your browser https://localhost:5001/swagger
 
