@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Document.Domain;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Document.Api.Controllers
@@ -38,6 +39,8 @@ namespace Document.Api.Controllers
 
         // POST api/documents
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task Post([FromBody] CustomerDocument customerDocument)
         {
             bool result = await mediator.Send(new CreateDocumentCommand(customerDocument));
